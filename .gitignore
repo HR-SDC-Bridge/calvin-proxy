@@ -25,3 +25,7 @@ build/
 dist/
 
 newrelic.js
+newrelic_agent.log
+.env
+*.cer
+*.pem

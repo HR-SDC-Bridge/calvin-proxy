@@ -35,7 +35,8 @@
   }
 
   #about {
-    position: relative;
+    /* Change position from relative to fixed. When at full screen the service was not visible since the image service is missing */
+    position: fixed;
     bottom: 31vh;
     grid-column-start: 9;
     grid-column-end: span 12;

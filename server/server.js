@@ -19,8 +19,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/product/:id', (req, res) => {
-  res.redirect(`http://localhost:3003/api/product/${req.params.id}`);
-  // res.redirect(`http://ec2-54-67-28-46.us-west-1.compute.amazonaws.com:5003/api/product/${req.params.id}`);
+  // res.redirect(`http://localhost:3003/api/product/${req.params.id}`);
+  res.redirect(`3.101.86.245:3003/api/product/${req.params.id}`);
 });
 
 app.post('/api/product/', async (req, res) => {
