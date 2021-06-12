@@ -1,3 +1,4 @@
+const newrelic = require('newrelic');
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
@@ -19,8 +20,18 @@ app.get('/', (req, res) => {
 
 app.get('/api/product/:id', (req, res) => {
   // res.redirect(`http://localhost:3003/api/product/${req.params.id}`);
-  res.redirect(`http://ec2-54-67-28-46.us-west-1.compute.amazonaws.com:5003/api/product/${req.params.id}`);
+  res.redirect(`3.101.86.245:3003/api/product/${req.params.id}`);
+});
 
+app.post('/api/product/', async (req, res) => {
+  await axios.post('http://localhost:3003/api/product/')
+    .then(() => {
+      res.status(201).send('New product added to the database via proxy')
+    })
+    .catch(err => {
+      console.log('Error with proxy post route to service', err)
+      res.status(404).end();
+    })
 });
 
 app.get('/images/org/:id', (req, res) => {
