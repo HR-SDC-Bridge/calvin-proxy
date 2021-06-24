@@ -20,18 +20,20 @@ app.get('/', (req, res) => {
 
 app.get('/api/product/:id', (req, res) => {
   // res.redirect(`http://localhost:3003/api/product/${req.params.id}`);
-  res.redirect(`3.101.86.245:3003/api/product/${req.params.id}`);
+  res.redirect(`http://3.101.86.245:3003/api/product/${req.params.id}`);
+  // switch to axios get request to load balancer IP when deployed. Do not use redirects
 });
 
 app.post('/api/product/', async (req, res) => {
-  await axios.post('http://localhost:3003/api/product/')
-    .then(() => {
-      res.status(201).send('New product added to the database via proxy')
-    })
-    .catch(err => {
-      console.log('Error with proxy post route to service', err)
-      res.status(404).end();
-    })
+  res.redirect(307, 'http://3.101.86.245:3003/api/product/');
+  // await axios.post('http://3.101.86.245:3003/api/product/')
+  //   .then(() => {
+  //     res.status(201).send('New product added to the database via proxy')
+  //   })
+  //   .catch(err => {
+  //     console.log('Error with proxy post route to service', err)
+  //     res.status(404).end();
+  //   })
 });
 
 app.get('/images/org/:id', (req, res) => {

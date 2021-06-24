@@ -16,7 +16,8 @@
   "scripts": {
     "start": "node server/server.js",
     "dev": "nodemon server/server.js",
-    "build": "webpack --watch"
+    "build": "webpack --watch",
+    "pm2" : "pm2 start server/server.js"
   },
   "dependencies": {
     "axios": "^0.21.1",
